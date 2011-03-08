@@ -93,7 +93,7 @@
    </netcdf>
   </dataset>
   
-  <dataset name="CH3D-ICM - 2004_only" ID="estuarine_hypoxia/ch3d-icm/2004" urlPath="estuarine_hypoxia/ch3d-icm/2004.nc">
+  <dataset name="CH3D-ICM - 2004_only" ID="estuarine_hypoxia/ch3d-icm/2004_only" urlPath="estuarine_hypoxia/ch3d-icm/2004_only.nc">
     <serviceName>all</serviceName>
     <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="/data/ftp/upload/Estuarine_Hypoxia/usace/ch3d-icm/2004_only/netcdf/DO2004_v4.nc">
       <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
