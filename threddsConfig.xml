@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <threddsConfig>
+   <datasetSource>gov.noaa.pmel.tmap.iosp.FerretDataSource</datasetSource>
 
-  <datasetSource>gov.noaa.pmel.tmap.iosp.FerretDataSource</datasetSource>
-
-  <nj22Config>
-    <ioServiceProvider class="gov.noaa.pmel.tmap.iosp.FerretIOServiceProvider"/>
-  </nj22Config>
+   <nj22Config>
+      <ioServiceProvider class="gov.noaa.pmel.tmap.iosp.FerretIOServiceProvider"/>
+   </nj22Config>
 
   <!-- all options are commented out in standard install - meaning use default values -->
   <!-- see http://www.unidata.ucar.edu/projects/THREDDS/tech/reference/ThreddsConfigXMLFile.html -->
   <serverInformation>
-    <name>Testbed - App Server</name>
-    <logoUrl>NOAA-logo.gif</logoUrl>
-    <logoAltText>Testbed</logoAltText>
+    <name>Initial TDS Installation</name>
+    <logoUrl>threddsIcon.gif</logoUrl>
+    <logoAltText>Initial TDS Installation</logoAltText>
 
     <abstract>Scientific Data</abstract>
     <keywords>meteorology, atmosphere, climate, ocean, earth science</keywords>
     
     <contact>
       <name>Support</name>
-      <organization>NOAA Testbed</organization>
-      <email>kwilcox@asascience with a dot com</email>
+      <organization>My Group</organization>
+      <email>support@my.group</email>
       <!--phone></phone-->
     </contact>
     <hostInstitution>
-      <name>SURA</name>
-      <webSite>http://testbedapps.sura.org/thredds/</webSite>
-      <logoUrl>sura.gif</logoUrl>
-      <logoAltText>SURA</logoAltText>
+      <name>My Group</name>
+      <webSite>http://www.my.site/</webSite>
+      <logoUrl>myGroup.gif</logoUrl>
+      <logoAltText>My Group</logoAltText>
     </hostInstitution>
   </serverInformation>
 
@@ -96,7 +95,6 @@
   CDM uses the DiskCache directory to store temporary files, like uncompressed files.
   <DiskCache>
     <alwaysUse>false</alwaysUse>
-    <dir>/data/tmp/thredds/cache/</dir>
     <scour>1 hour</scour>
     <maxSize>1 Gb</maxSize>
   </DiskCache>
@@ -110,16 +108,6 @@
     <maxFiles>400</maxFiles>
     <scour>10 min</scour>
   </NetcdfFileCache>
-  -->
-
-  <!--
-  Caching open NetcdfDataset objects.
-   default allow 100 - 200 open datasets, cleanup every 10 minutes
-  <NetcdfDatasetCache>
-    <minFiles>100</minFiles>
-    <maxFiles>200</maxFiles>
-    <scour>10 min</scour>
-  </NetcdfDatasetCache>
   -->
 
   <!--
@@ -144,7 +132,6 @@
   <!--
   Persist joinNew aggregations to named directory. scour every 24 hours, delete stuff older than 30 days
   <AggregationCache>
-    <dir>/data/tmp/thredds/aggcache/</dir>
     <scour>24 hours</scour>
     <maxAge>30 days</maxAge>
   </AggregationCache>
@@ -159,12 +146,14 @@
 
   <!--
   The Netcdf Subset Service is off by default.
-  -->
   <NetcdfSubsetService>
-    <allow>true</allow>
+    <allow>false</allow>
     <scour>10 min</scour>
     <maxAge>-1 min</maxAge>
+    <metarDataDir>/opt/tomcat/content/thredds/public/stn/</metarDataDir>
+    <metarRawDir>/data/ldm/pub/decoded/netcdf/surface/metar/</metarRawDir>
   </NetcdfSubsetService>
+  -->
 
   <!--
   <Opendap>
@@ -177,22 +166,22 @@
   <!--
   The WCS Service is off by default.
   Also, off by default (and encouraged) is operating on a remote dataset.
-  -->
   <WCS>
-    <allow>true</allow>
+    <allow>false</allow>
     <allowRemote>false</allowRemote>
     <scour>15 min</scour>
     <maxAge>30 min</maxAge>
   </WCS>
-
-  <!--
   -->
+
+
   <WMS>
     <allow>true</allow>
     <allowRemote>false</allowRemote>
-    <maxImageWidth>1920</maxImageWidth>
-    <maxImageHeight>1200</maxImageHeight>
+    <maxImageWidth>2048</maxImageWidth>
+    <maxImageHeight>2048</maxImageHeight>
   </WMS>
+
 
 
   <!-- CatalogGen service is off by default.
@@ -224,13 +213,6 @@
    Add a DataSource - essentially an IOSP with access to Servlet request parameters
    <DatsetSource>my.package.DatsetSourceImpl</DatsetSource>
    -->
-
-  <!--
-  Forecast Model Run Collection Inventory
-  <FmrcInventory>
-    <openType>XML_ONLY</openType>
-  </FmrcInventory>
-  -->
 
   <!--
   Modify Logging parameters. Normally use log4j.xml

@@ -6,5 +6,6 @@
  <catalogRef xlink:title="Clean Datasets" xlink:href="clean.xml" name=""/>
  <catalogRef xlink:title="All Uploaded Datasets" xlink:href="all.xml" name=""/>
  <catalogRef xlink:title="Unstructured Development" xlink:href="ugrid.xml" name=""/>
+ <catalogRef xlink:title="LAS Data Sets" xlink:href="las_tds.xml" name=""/>
 
 </catalog>
