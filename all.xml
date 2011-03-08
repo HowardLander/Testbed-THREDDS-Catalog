@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog name="NOAA IOOS Testbed THREDDS Server"
+ xmlns="http://www.unidata.ucar.edu/namespaces/thredds/InvCatalog/v1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+
+ <service name="all" base="" serviceType="compound">
+  <service name="odap" serviceType="OpenDAP" base="/thredds/dodsC/"/>
+  <service name="http" serviceType="HTTPServer" base="/thredds/fileServer/"/>
+  <service name="wcs" serviceType="WCS" base="/thredds/wcs/"/>
+  <service name="wms" serviceType="WMS" base="/thredds/wms/"/>
+  <service name="ncss" serviceType="NetcdfSubset" base="/thredds/ncss/"/>
+  <service name="ncml" serviceType="NCML" base="/thredds/ncml/"/>
+  <service name="uddc" serviceType="UDDC" base="/thredds/uddc/"/>
+  <service name="iso" serviceType="ISO" base="/thredds/iso/"/>
+ </service>
+
+
+ <datasetScan name="Samples of NetCDF Output" path="samples" location="/data/ftp/upload/Catalog/">
+  <serviceName>all</serviceName>
+  <addDatasetSize/>
+  <filter>
+   <include wildcard="*.nc"/>
+   <include wildcard="*.ncml"/>
+  </filter>
+ </datasetScan>
+
+ <datasetScan name="Inundation" path="inundation_scan" location="/data/ftp/upload/Inundation/">
+  <serviceName>all</serviceName>
+  <addDatasetSize/>
+ </datasetScan>
+
+ <datasetScan name="Shelf Hypoxia" path="shelf_hypoxia_scan"
+  location="/data/ftp/upload/Shelf_Hypoxia/">
+  <serviceName>all</serviceName>
+  <addDatasetSize/>
+ </datasetScan>
+
+ <datasetScan name="Estuarine Hypoxia" path="estuarine_hypoxia_scan"
+  location="/data/ftp/upload/Estuarine_Hypoxia/">
+  <serviceName>all</serviceName>
+  <addDatasetSize/>
+ </datasetScan>
+
+ <dataset name="Upload">
+  <dataset name="Estuarine Hypoxia" ID="estuarine_hypoxia">
+
+   <datasetScan name="Observations" path="estuarine_hypoxia/observations"
+    location="/data/ftp/upload/Estuarine_Hypoxia/Observations/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="CH3D Files" path="estuarine_hypoxia/ch3d/files"
+    location="/data/ftp/upload/Estuarine_Hypoxia/usace/ch3d/">
+    <serviceName>all</serviceName>
+    <filter>
+     <include wildcard="*.nc"/>
+    </filter>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="CBOFS2 Files" path="estuarine_hypoxia/cbofs2/files"
+    location="/data/ftp/upload/Estuarine_Hypoxia/noaa/cbofs2/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   
+   <datasetScan name="ChesROMS Files" path="estuarine_hypoxia/chesroms/files"
+    location="/data/ftp/upload/Estuarine_Hypoxia/umces/chesroms/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   
+   <datasetScan name="EFDC Files" path="estuarine_hypoxia/efdc/files"
+    location="/data/ftp/upload/Estuarine_Hypoxia/vims/efdc/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="ROMS Files" path="estuarine_hypoxia/roms/files"
+    location="/data/ftp/upload/Estuarine_Hypoxia/umces/roms/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   
+  </dataset>
+
+  <dataset name="Shelf Hypoxia" ID="shelf_hypoxia">
+ 
+   <datasetScan name="NRL HYCOM Files" path="shelf_hypoxia/nrl_hycom/files"
+    location="/data/ftp/upload/Shelf_Hypoxia/nrl/hycom_gom">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   <datasetScan name="NAVOCEAN NCOM AMSEAS Files" path="shelf_hypoxia/ncom_amseas/files"
+    location="/data/ftp/upload/Shelf_Hypoxia/navocean/ncom_amseas">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   <datasetScan name="NRL NCOM IASNFS Files" path="shelf_hypoxia/ncom_iasnfs/files"
+    location="/data/ftp/upload/Shelf_Hypoxia/nrl/ncom_iasnfs">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+   <datasetScan name="NRL NCOM GOM Files" path="shelf_hypoxia/ncom_gom/files"
+    location="/data/ftp/upload/Shelf_Hypoxia/nrl/ncom_gom">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+  <datasetScan name="Katja's ROMS Files" path="shelf_hypoxia/roms/files"
+    location="/data/ftp/upload/Shelf_Hypoxia/dal/roms">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+  </dataset>
+
+  <dataset name="Inundation" ID="inundation">
+
+   <datasetScan name="ELCIRC Files" path="inundation/elcirc/files"
+    location="/data/ftp/upload/Inundation/vims/elcirc/">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="UMASS FVCOM Files" path="inundation/umass_fvcom/files"
+    location="/data/ftp/upload/Inundation/umass">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="UND ADCIRC Files" path="inundation/und_adcirc/files"
+    location="/data/ftp/upload/Inundation/und">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="UF SLOSH Files" path="inundation/uf_slosh/files"
+    location="/data/ftp/upload/Inundation/uf">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="BIO WW3 Files" path="inundation/bio_ww3/files"
+    location="/data/ftp/upload/Inundation/bio">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="USF FVCOM Files" path="inundation/usf_fvcom/files"
+    location="/data/ftp/upload/Inundation/usf">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+   <datasetScan name="LSU Bathymetry Files" path="inundation/lsu_bathymetry/files"
+    location="/data/ftp/upload/Inundation/lsu">
+    <serviceName>all</serviceName>
+    <addDatasetSize/>
+   </datasetScan>
+
+  </dataset>
+
+ </dataset>
+
+ <datasetRoot path="chesroms" location="/data/ftp/upload/Estuarine_Hypoxia/umces/chesroms/output/"/>
+
+</catalog>
