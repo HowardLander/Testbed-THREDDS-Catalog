@@ -23,7 +23,7 @@
   <service name="iso" serviceType="ISO" base="/thredds/iso/"/>
  </service>
 
- <dataset name="Estuarine Hypoxia" ID="estuarine_hypoxia">
+ <dataset name="Estuarine Hypoxia">
 
   <dataset name="CH3D - Synoptic - Agg" ID="estuarine_hypoxia/ch3d/agg" urlPath="estuarine_hypoxia/ch3d/agg.nc">
    <serviceName>agg</serviceName>
@@ -92,6 +92,39 @@
     </aggregation>
    </netcdf>
   </dataset>
+  
+  <dataset name="CH3D-ICM - 2004_only" ID="estuarine_hypoxia/ch3d-icm/2004_only" urlPath="estuarine_hypoxia/ch3d-icm/2004_only.nc">
+    <serviceName>all</serviceName>
+    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="/data/ftp/upload/Estuarine_Hypoxia/usace/ch3d-icm/2004_only/netcdf/DO2004_v4.nc">
+      <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+      <attribute name="wms-layer-prefix" value="ch3d_icm_2004_only" />
+      <attribute name="title" value="CH3D-ICM (USACE)" />
+      <attribute name="id" value="eh.usace.ch3d-icm.2004_only" />
+      <attribute name="naming_authority" value="noaa.ioos.testbed" />
+      <attribute name="summary" value="Chesapeake Bay application of CH3D-ICM" />
+      <attribute name="creator_name" value="Ping Wang and Aaron Bever" />
+      <attribute name="creator_email" value="pwang@chesapeakebay.net and abever@vims.edu" />
+      <attribute name="creator_url" value="http://www.chesapeakebay.net" />
+      <attribute name="cdm_data_type" value="Grid" />
+      <attribute name="history" value="ASA rewrite into NetCDF: 2011-03-01" />
+
+      <variable name="level">
+       <values> -28.1940 -26.6700 -25.1460 -23.6220 -22.0980 -20.5740 -19.0500 -17.5260 -16.0020
+        -14.4780 -12.9540 -11.4300 -9.9060 -8.3820 -6.8580 -5.3340 -3.8100 -2.2860 -0.7620 </values>
+       <attribute name="positive" value="up"/>
+      </variable>
+      <variable name="do">
+        <attribute name="wms-layer" value="ch3d_icm_2004_only/do" />
+        <attribute name="standard_name" value="mass_concentration_of_dissolved_oxygen_in_sea_water" />
+        <attribute name="coordinates" value="level lon lat" />
+      </variable>
+      <variable name="do_bottom">
+        <attribute name="wms-layer" value="ch3d_icm_2004_only/do_bottom" />
+        <attribute name="standard_name" value="mass_concentration_of_dissolved_oxygen_in_sea_water" />
+      </variable>
+    </netcdf>
+  </dataset>
+
 
   <dataset name="CBOFS2 - Synoptic - Agg" ID="estuarine_hypoxia/cbofs2/agg"
    urlPath="estuarine_hypoxia/cbofs2/agg.nc">
@@ -264,7 +297,54 @@
     </aggregation>
    </netcdf>
   </dataset>
-  
+ 
+
+  <dataset name="ChesROMS-1TDO - Synoptic - Agg (2004-2005)" ID="estuarine_hypoxia/chesroms_1tdo/agg"
+   urlPath="estuarine_hypoxia/chesroms_1tdo/agg.nc">
+   <serviceName>agg</serviceName>
+   <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
+
+    <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+    <attribute name="wms-layer-prefix" value="chesroms_1tdo" />
+    <attribute name="title" value="ChesROMS-1TDO (ODU) - ROMS-2.2" />
+    <attribute name="id" value="eh.odu.chesroms-1tdo.synoptic" />
+    <attribute name="naming_authority" value="noaa.ioos.testbed" />
+    <attribute name="summary" value="Chesapeake Bay Application of ROMS/TOMS 2.2 with 1 term DO" />
+    <attribute name="creator_name" value="Malcolm Scully" />
+    <attribute name="creator_email" value="mscully@odu.edu" />
+    <attribute name="creator_url" value="http://odu.edu/" />
+    <attribute name="cdm_data_type" value="Grid" />
+
+    <variable name="salt">
+     <attribute name="missing_value" type="float" value="0.0"/>
+     <attribute name="wms-layer" value="chesroms_1tdo/salt" />
+     <attribute name="standard_name" value="sea_water_salinity"/>
+    </variable>
+    <variable name="temp">
+     <attribute name="missing_value" type="float" value="0.0"/>
+     <attribute name="wms-layer" value="chesroms_1tdo/temp" />
+     <attribute name="standard_name" value="sea_water_temperature"/>
+    </variable>
+    <variable name="u">
+      <attribute name="standard_name" value="eastward_sea_water_velocity"/>
+      <attribute name="wms-layer" value="chesroms_1tdo/sea_water_velocity" />
+    </variable>
+    <variable name="v">
+      <attribute name="standard_name" value="northward_sea_water_velocity"/>
+      <attribute name="wms-layer" value="chesroms_1tdo/sea_water_velocity" />
+    </variable>
+    <variable name="dye_01">
+      <attribute name="standard_name" value="mass_concentration_of_dye_in_sea_water"/>
+      <attribute name="wms-layer" value="chesroms_1tdo/dye_01" />
+    </variable> 
+    <aggregation dimName="ocean_time" type="joinExisting" timeUnitsChange="true">
+     <scan location="/data/ftp/upload/Estuarine_Hypoxia/odu/chesroms_1TDO/synoptic/history_output/"
+      suffix=".nc" subdirs="true"/>
+    </aggregation>
+   </netcdf>
+  </dataset>
+
+ 
   <dataset name="ChesROMS - Synoptic - Agg" ID="estuarine_hypoxia/chesroms/agg"
    urlPath="estuarine_hypoxia/chesroms/agg.nc">
    <serviceName>agg</serviceName>
@@ -310,7 +390,7 @@
    urlPath="estuarine_hypoxia/chesroms/vectors.nc">
    <serviceName>agg</serviceName>
    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
-    location="/data/ftp/upload/Estuarine_Hypoxia/umces/chesroms/synoptic/output/vectors.jnl">
+    location="/data/ftp/upload/Estuarine_Hypoxia/umces/chesroms/synoptic_vectors/vectors.jnl">
 
     <remove type="variable" name="LON_RHO_P_0"/>
     <!--<remove type="variable" name="lon_rho_p"/>-->
@@ -380,10 +460,10 @@
     <attribute name="Conventions" value="CF-1.0"/>
    </netcdf>
   </dataset>
+
  </dataset>
 
-
- <dataset name="Shelf Hypoxia" ID="shelf_hypoxia">
+ <dataset name="Shelf Hypoxia">
   <catalogRef xlink:title="TAMU ROMS (remote)"
    xlink:href="http://megara.tamu.edu:8080/thredds/gcoos_sura.xml" name=""/>
   <catalogRef xlink:title="HYCOM/NCODA 1/25 Degree Analysis GOMl0.04/expt_20.1 (Jan-2003 to Jul-2010) (remote)"
@@ -396,7 +476,6 @@
    xlink:href="http://edac-dap3.northerngulfinstitute.org/thredds/catalog/ncom_archive_iasnfs3d_agg/catalog.xml" name=""/>
   <catalogRef xlink:title="IASNFS Archive SSH"
    xlink:href="http://edac-dap3.northerngulfinstitute.org/thredds/catalog/ncom_archive_iasnfs2d_agg/catalog.xml" name=""/>
-  
 
   <dataset name="Katja ROMS - b_clm_001 - Agg" ID="shelf_hypoxia/roms/agg"
    urlPath="shelf_hypoxia/roms/agg.nc">
@@ -474,39 +553,103 @@
 
  </dataset>
 
- <dataset name="Inundation" ID="inundation">
+ <dataset name="Inundation">
+   <datasetScan name="Inundation Observations" path="inundation/observations"
+                location="/data/ftp/upload/Inundation/Observations/netcdf">
+     <serviceName>all</serviceName>
+     <filter>
+      <include wildcard="*.nc"/>
+     </filter>
+     <addDatasetSize/>
+   </datasetScan>
 
-  <datasetScan name="Inundation Observations" path="inundation/observations"
-   location="/data/ftp/upload/Inundation/observations/extratropical/netcdf/">
-   <serviceName>all</serviceName>
-   <filter>
-    <include wildcard="*.nc"/>
-   </filter>
-   <addDatasetSize/>
-  </datasetScan>
+  <dataset name="Slosh (UF)">
+
+    <dataset name="SLOSH - Ike - Galveston OWI Wind Only" ID="inundation/slosh/ike/galveston/owi_wind_only" urlPath="inundation/slosh/ike/galveston/owi_wind_only.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/OWI.wind.only/slosh-spatial-netcdf.nc">
+        <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+        <attribute name="wms-layer-prefix" value="slosh_ike_galveston_owi_wind_only" />
+        <attribute name="title" value="SLOSH - IKE - Galveston - OWI Wind Only" />
+        <attribute name="id" value="in.uf.slosh.ike.galveston.owi_wind_only" />
+        <attribute name="naming_authority" value="noaa.ioos.testbed" />
+        <attribute name="summary" value="Slosh for Ike in Galveston using OWI Wind Only" />
+        <attribute name="creator_name" value="Justin Davis" />
+        <attribute name="creator_email" value="davis@coastal.ufl.edu" />
+        <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
+        <attribute name="cdm_data_type" value="Grid" />
+      </netcdf>
+    </dataset>
+
+    <dataset name="SLOSH - Ike - Galveston OWI Wind Wave" ID="inundation/slosh/ike/galveston/owi_wind_wave" urlPath="inundation/slosh/ike/galveston/owi_wind_wave.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/OWI.wind.wave/slosh-spatial-netcdf.nc">
+        <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+        <attribute name="wms-layer-prefix" value="slosh_ike_galveston_owi_wind_wave" />
+        <attribute name="title" value="SLOSH - IKE - Galveston - OWI Wind Wave" />
+        <attribute name="id" value="in.uf.slosh.ike.galveston.owi_wind_wave" />
+        <attribute name="naming_authority" value="noaa.ioos.testbed" />
+        <attribute name="summary" value="Slosh for Ike in Galveston using OWI Wind Wave" />
+        <attribute name="creator_name" value="Justin Davis" />
+        <attribute name="creator_email" value="davis@coastal.ufl.edu" />
+        <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
+        <attribute name="cdm_data_type" value="Grid" />
+      </netcdf>
+    </dataset>
+
+    <dataset name="SLOSH - Ike - Galveston OWI Wind Wave MF" ID="inundation/slosh/ike/galveston/owi_wind_wave_mf" urlPath="inundation/slosh/ike/galveston/owi_wind_wave_mf.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/OWI.wind.wave.mf/slosh-spatial-netcdf.nc">
+        <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+        <attribute name="wms-layer-prefix" value="slosh_ike_galveston_owi_wind_wave_mf" />
+        <attribute name="title" value="SLOSH - IKE - Galveston - OWI Wind Wave MF" />
+        <attribute name="id" value="in.uf.slosh.ike.galveston.owi_wind_wave_mf" />
+        <attribute name="naming_authority" value="noaa.ioos.testbed" />
+        <attribute name="summary" value="Slosh for Ike in Galveston using OWI Wind Wave MF" />
+        <attribute name="creator_name" value="Justin Davis" />
+        <attribute name="creator_email" value="davis@coastal.ufl.edu" />
+        <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
+        <attribute name="cdm_data_type" value="Grid" />
+      </netcdf>
+    </dataset>
+
+    <dataset name="SLOSH - Ike - Galveston Wind Only" ID="inundation/slosh/ike/galveston/wind_only" urlPath="inundation/slosh/ike/galveston/wind_only.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/wind.only/slosh-spatial-netcdf.nc">
+        <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+        <attribute name="wms-layer-prefix" value="slosh_ike_galveston_wind_only" />
+        <attribute name="title" value="SLOSH - IKE - Galveston - Wind Only" />
+        <attribute name="id" value="in.uf.slosh.ike.galveston.wind_only" />
+        <attribute name="naming_authority" value="noaa.ioos.testbed" />
+        <attribute name="summary" value="Slosh for Ike in Galveston using Wind Only" />
+        <attribute name="creator_name" value="Justin Davis" />
+        <attribute name="creator_email" value="davis@coastal.ufl.edu" />
+        <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
+        <attribute name="cdm_data_type" value="Grid" />
+      </netcdf>
+    </dataset>
  
+    <dataset name="SLOSH - Ike - Galveston Wind Only Garrat" ID="inundation/slosh/ike/galveston/wind_only_garrat" urlPath="inundation/slosh/ike/galveston/wind_only_garrat.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/wind.only.garrat/slosh-spatial-netcdf.nc">
+        <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
+        <attribute name="wms-layer-prefix" value="slosh_ike_galveston_wind_only_garrat" />
+        <attribute name="title" value="SLOSH - IKE - Galveston - Wind Only Garrat" />
+        <attribute name="id" value="in.uf.slosh.ike.galveston.wind_only_garrat" />
+        <attribute name="naming_authority" value="noaa.ioos.testbed" />
+        <attribute name="summary" value="Slosh for Ike in Galveston using Wind Only Garrat" />
+        <attribute name="creator_name" value="Justin Davis" />
+        <attribute name="creator_email" value="davis@coastal.ufl.edu" />
+        <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
+        <attribute name="cdm_data_type" value="Grid" />
+      </netcdf>
+    </dataset>
 
-  <dataset name="SLOSH (UF)" ID="inundation/slosh" urlPath="inundation/slosh/sloshtest.nc" >
-    <serviceName>all</serviceName>
-    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
-            location="/data/ftp/upload/Inundation/uf/ConvertedToNetCDFandIMEDS/v3-8/slosh-spatial-netcdf.nc">
-      <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
-      <attribute name="wms-layer-prefix" value="slosh" />
-      <attribute name="title" value="SLOSH (UF) - SLOSH" />
-      <attribute name="id" value="in.uf.slosh" />
-      <attribute name="naming_authority" value="noaa.ioos.testbed" />
-      <attribute name="summary" value="" />
-      <attribute name="creator_name" value="Justin Davis" />
-      <attribute name="creator_email" value="davis@coastal.ufl.edu" />
-      <attribute name="creator_url" value="http://www.coastal.ufl.edu" />
-      <attribute name="cdm_data_type" value="Grid" />
-    </netcdf>
   </dataset>
-
-</dataset>
-
-
-
-
-
+ </dataset>
 </catalog>
