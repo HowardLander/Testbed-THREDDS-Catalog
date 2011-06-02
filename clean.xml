@@ -93,13 +93,13 @@
    </netcdf>
   </dataset>
   
-  <dataset name="CH3D-ICM - 2004_only" ID="estuarine_hypoxia/ch3d-icm/2004_only" urlPath="estuarine_hypoxia/ch3d-icm/2004_only.nc">
+  <dataset name="CH3D-ICM - 2004_and_2005" ID="estuarine_hypoxia/ch3d-icm/2004_and_2005" urlPath="estuarine_hypoxia/ch3d-icm/2004_and_2005.nc">
     <serviceName>all</serviceName>
-    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2" location="/data/ftp/upload/Estuarine_Hypoxia/usace/ch3d-icm/2004_only/netcdf/DO2004_v4.nc">
+    <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2">
       <attribute name="wms-link" value="http://testbedapps.sura.org/ncWMS/wms" />
-      <attribute name="wms-layer-prefix" value="ch3d_icm_2004_only" />
+      <attribute name="wms-layer-prefix" value="ch3d_icm_2004_and_2005" />
       <attribute name="title" value="CH3D-ICM (USACE)" />
-      <attribute name="id" value="eh.usace.ch3d-icm.2004_only" />
+      <attribute name="id" value="eh.usace.ch3d-icm.2004_and_2005" />
       <attribute name="naming_authority" value="noaa.ioos.testbed" />
       <attribute name="summary" value="Chesapeake Bay application of CH3D-ICM" />
       <attribute name="creator_name" value="Ping Wang and Aaron Bever" />
@@ -114,17 +114,19 @@
        <attribute name="positive" value="up"/>
       </variable>
       <variable name="do">
-        <attribute name="wms-layer" value="ch3d_icm_2004_only/do" />
+        <attribute name="wms-layer" value="ch3d_icm_2004_and_2005/do" />
         <attribute name="standard_name" value="mass_concentration_of_dissolved_oxygen_in_sea_water" />
         <attribute name="coordinates" value="level lon lat" />
       </variable>
       <variable name="do_bottom">
-        <attribute name="wms-layer" value="ch3d_icm_2004_only/do_bottom" />
+        <attribute name="wms-layer" value="ch3d_icm_2004_and_2005/do_bottom" />
         <attribute name="standard_name" value="mass_concentration_of_dissolved_oxygen_in_sea_water" />
       </variable>
+      <aggregation dimName="time" type="joinExisting" timeUnitsChange="true">
+       <scan location="/data/ftp/upload/Estuarine_Hypoxia/usace/ch3d-icm/2004_and_2005/netcdf/" suffix=".nc" subdirs="false"/>
+      </aggregation>
     </netcdf>
   </dataset>
-
 
   <dataset name="CBOFS2 - Synoptic - Agg" ID="estuarine_hypoxia/cbofs2/agg"
    urlPath="estuarine_hypoxia/cbofs2/agg.nc">
@@ -153,6 +155,7 @@
     <variable name="temp">
      <attribute name="wms-layer" value="cbofs2/temp" />
      <attribute name="standard_name" value="sea_water_temperature"/>
+     <!--attribute name="missing_value" type="float" value="0.0"/-->
     </variable>
     <variable name="salt">
      <attribute name="wms-layer" value="cbofs2/salt" />
@@ -461,6 +464,17 @@
    </netcdf>
   </dataset>
 
+  <dataset name="Observations">
+    <datasetScan name="Chesapeake CBP Sampling" path="estuarine_hypoxia/observations/cbp"
+                 location="/data/ftp/upload/Estuarine_Hypoxia/Observations/CBP/NetCDF/1.1">
+      <serviceName>all</serviceName>
+      <filter>
+        <include wildcard="*.nc"/>
+      </filter>
+      <addDatasetSize/>
+    </datasetScan>
+  </dataset>
+
  </dataset>
 
  <dataset name="Shelf Hypoxia">
@@ -555,13 +569,23 @@
 
  <dataset name="Inundation">
    <datasetScan name="Inundation Observations" path="inundation/observations"
-                location="/data/ftp/upload/Inundation/Observations/netcdf">
+                location="/data/ftp/upload/Inundation/observations/tropical/netcdf">
      <serviceName>all</serviceName>
      <filter>
       <include wildcard="*.nc"/>
      </filter>
      <addDatasetSize/>
    </datasetScan>
+
+   <dataset name="WW3 SOS Test" ID="inundation/sostest" urlPath="inundation/ww3.nc" >
+      <serviceName>all</serviceName>
+      <netcdf xmlns="http://www.unidata.ucar.edu/namespaces/netcdf/ncml-2.2"
+              location="/data/ftp/upload/Inundation/uf/slosh_tropical/runs/Ike/galveston/OWI.wind.only/slosh-spatial-netcdf.nc">
+        <attribute name="sos-link" value="http://www3.gomoos.org:8080/oostethys_sura/sos" />
+        <attribute name="title" value="SOS Test With WW3" />
+
+      </netcdf>
+    </dataset>
 
   <dataset name="Slosh (UF)">
 
@@ -649,6 +673,7 @@
         <attribute name="cdm_data_type" value="Grid" />
       </netcdf>
     </dataset>
+
 
   </dataset>
  </dataset>
