@@ -146,14 +146,12 @@
 
   <!--
   The Netcdf Subset Service is off by default.
-  <NetcdfSubsetService>
-    <allow>false</allow>
-    <scour>10 min</scour>
-    <maxAge>-1 min</maxAge>
-    <metarDataDir>/opt/tomcat/content/thredds/public/stn/</metarDataDir>
-    <metarRawDir>/data/ldm/pub/decoded/netcdf/surface/metar/</metarRawDir>
-  </NetcdfSubsetService>
   -->
+  <NetcdfSubsetService>
+    <allow>true</allow>
+    <dir>/var/www/tomcat-threddsdev/content/cache/ncss</dir>
+    <scour>10 min</scour>
+  </NetcdfSubsetService>
 
   <!--
   <Opendap>
@@ -166,13 +164,13 @@
   <!--
   The WCS Service is off by default.
   Also, off by default (and encouraged) is operating on a remote dataset.
+  -->
   <WCS>
-    <allow>false</allow>
+    <allow>true</allow>
     <allowRemote>false</allowRemote>
     <scour>15 min</scour>
     <maxAge>30 min</maxAge>
   </WCS>
-  -->
 
 
   <WMS>
