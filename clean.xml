@@ -619,6 +619,13 @@
         </filter>
         <addDatasetSize/>
       </datasetScan>
+
+      <featureCollection name="Chesapeake CBP Sampling Aggregation" featureType="STATION_PROFILE" harvest="true" path="estuarine_hypoxia/observations/cbp_agg">
+        <documentation type="summary">Aggregate of stations</documentation>
+        <collection spec="/data/ftp/upload/Estuarine_Hypoxia/Observations/CBP/NetCDF/1.1/**/.*\.nc" 
+                    recheckEvery="15 min" olderThan="5 min" />
+      </featureCollection>
+
     </dataset>
 
  </dataset>
