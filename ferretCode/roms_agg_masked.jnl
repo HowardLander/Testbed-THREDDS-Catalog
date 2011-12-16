@@ -1,0 +1,11 @@
+use "http://testbedapps.sura.org/threddsdev/dodsC/estuarine_hypoxia/cbofs2/agg.nc"
+let/d=1/title="temp masked by mask_rho"/units="`temp,return=units`" temp_masked = if mask_rho eq 1 then temp
+DEFINE ATTRIBUTE temp_masked.field = "temperature, scalar, series"
+DEFINE ATTRIBUTE temp_masked.standard_name = "sea_water_temperature"
+DEFINE ATTRIBUTE temp_masked.time = "ocean_time"
+DEFINE ATTRIBUTE temp_masked.coordinates = "lat_rho lon_rho"
+let/d=1/title="salt masked by mask_rho"/units="`salt,return=units`" salt_masked = if mask_rho eq 1 then temp
+DEFINE ATTRIBUTE salt_masked.field = "salinity, scalar, series"
+DEFINE ATTRIBUTE salt_masked.standard_name = "sea_water_salinity"
+DEFINE ATTRIBUTE salt_masked.time = "ocean_time"
+DEFINE ATTRIBUTE salt_masked.coordinates = "lat_rho lon_rho"

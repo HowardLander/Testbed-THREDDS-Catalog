@@ -1,0 +1,34 @@
+use "http://testbedapps.sura.org/threddsdev/dodsC/estuarine_hypoxia/chesroms/agg-1991.nc"
+
+! Mask out missing values per CF standards
+let u_masked = if mask_u eq 1 then u
+let v_masked = if mask_v eq 1 then v
+let ubar_masked = if mask_u eq 1 then ubar
+let vbar_masked = if mask_v eq 1 then vbar
+
+! Average Arakawa velocity locations onto the rho grid positions
+let u_p_0 = 0.5*(u_masked[i=@shf:-1]+u_masked)
+let v_p_0 = 0.5*(v_masked[j=@shf:-1]+v_masked)
+let ubar_p_0 = 0.5*(ubar_masked[i=@shf:-1]+ubar_masked)
+let vbar_p_0 = 0.5*(vbar_masked[j=@shf:-1]+vbar_masked)
+
+! associate the averaged values with coordinates on the rho grid (in the lon-lat plane)
+let u_p = u_p_0[g=lon_rho@asn]
+let v_p = v_p_0[g=lon_rho@asn]
+let ubar_p = ubar_p_0[g=lon_rho@asn]
+let vbar_p = vbar_p_0[g=lon_rho@asn]
+
+! rotate components to be Earth-oriented instead of grid-oriented
+LET/d=1/title="u centered & rotated"/units="`u,return=units`"   urot = u_p*COS(angle) - v_p*SIN(angle)
+LET/d=1/title="v centered & rotated"/units="`v,return=units`" vrot = u_p*SIN(angle) + v_p*COS(angle)
+LET/d=1/title="u-bar centered & rotated"/units="`ubar,return=units`" ubarrot = ubar_p*COS(angle) - vbar_p*SIN(angle)
+LET/d=1/title="v-bar centered & rotated"/units="`vbar,return=units`" vbarrot = ubar_p*SIN(angle) + vbar_p*COS(angle)
+
+DEFINE ATTRIBUTE urot.coordinates = "lat_rho lon_rho"
+DEFINE ATTRIBUTE urot.time = "ocean_time"
+DEFINE ATTRIBUTE vrot.coordinates = "lat_rho lon_rho"
+DEFINE ATTRIBUTE vrot.time = "ocean_time"
+DEFINE ATTRIBUTE ubarrot.coordinates = "lat_rho lon_rho"
+DEFINE ATTRIBUTE ubarrot.time = "ocean_time"
+DEFINE ATTRIBUTE vbarrot.coordinates = "lat_rho lon_rho"
+DEFINE ATTRIBUTE vbarrot.time = "ocean_time"

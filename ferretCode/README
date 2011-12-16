@@ -1,0 +1,22 @@
+This directory contains the F/TDS config files that were used to rotate and transform data sets. The 
+file 
+
+map_roms_tamu_bl.nc 
+
+is the Ferret curvilinear mapping file referenced in 
+
+tamuRomsRotated.jnl
+
+and was originally in the directory 
+
+/var/www/tomcat-threddsdev/content/threddsdev/ 
+
+on testbedapps.phys.lsu.edu. The rest of the files were originally in the directory
+
+/var/www/apache-tomcat-6.0.29-threddsdev/content/las/conf/server/data/dynamic
+
+and were referenced in the xml config files in 
+
+/var/www/tomcat-threddsdev/content/threddsdev on the
+
+same server.
